@@ -1,0 +1,28 @@
+<h1>Cards for <%= @user.name %> (<%= @user.member_id %>)</h1>
+<p id="notice"><%= notice %></p>
+
+<table>
+  <tr>
+    <th>Site Code</th>
+		<th>Card</th>
+    <th>Enabled</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @cards.each do |card| %>
+  <tr>
+    <td><%= card.card_id %></td>
+    <td><%= card.site_code %></td>
+    <td><%= card.enabled %></td>
+		<td><%= link_to 'Disable', disable_user_card_path(@user, card), method: :post, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Edit', edit_user_card_path(@user, card) %></td>
+    <td><%= link_to 'Destroy', user_card_path(@user, card), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Card', new_user_card_path %>

@@ -1,4 +1,17 @@
 AccessControl::Application.routes.draw do
+
+  resources :users, :key => :member_id do
+    resources :cards do
+      member do
+        post 'disable'
+      end
+    end
+    
+    member do
+      post 'disable'
+    end
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
